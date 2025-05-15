@@ -51,11 +51,12 @@ public class Fila {
         ocupacao--;
         Long horarioImpressao = System.currentTimeMillis();
         Date dataImpressao = new Date(horarioImpressao);
-        Date dataSolicitacao = (Date) aux.getHorarioSolicitacao();
+        Date dataSolicitacao = (Date)aux.getHorarioSolicitacao();
         long tempoEspera = dataImpressao.getTime()-dataSolicitacao.getTime();
-        return "Horario de impressao: "+dataImpressao+"\nTempo de espera: "+(tempoEspera/1000);
+        return "Horário de impressão: "+dataImpressao+"\nTempo de espera: "+(tempoEspera/1000);
     }
 
+    // Retirar prints na entrega final
     // O sistema deve permitir consultar se um determinado documento está na fila, sua posição e o horário de solicitação
     public String consultarDocumento(String novo){
         if (filaVazia())
@@ -63,10 +64,9 @@ public class Fila {
         Long horarioImpressao = System.currentTimeMillis();
         Date dataImpressao = new Date(horarioImpressao);
         for(int i=primeiro, cont = 0; cont < ocupacao; i = proximaPosicao(i), cont++){
-            System.out.println(documentos[i]);
             if (novo.equals(documentos[i].getNomeArquivo())){
                 System.out.println("Print: "+i+"\n"+documentos[i].getNomeArquivo());
-                return "Documento está na fila\nNome: "+documentos[i].getNomeArquivo()+"\nPosição: "+i+"\nHorário de solicitação de impressão: "+dataImpressao;
+                return "Documento está na fila\nNome: "+documentos[i].getNomeArquivo()+"\nPosição: "+i+"\nHorário de solicitação de impressão: "+dataImpressao+" segundos";
             }
         }
         return "Documento não está na fila";

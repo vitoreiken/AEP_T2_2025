@@ -1,4 +1,4 @@
-    import javax.swing.JOptionPane;
+import javax.swing.JOptionPane;
 
 public class TesteFila {
     public static void main(String[] args) {
@@ -11,7 +11,7 @@ public class TesteFila {
             switch (opcoes) {
                 case 1:
                     String arquivo = JOptionPane.showInputDialog("Digite o nome do arquivo");
-                    String usuario = JOptionPane.showInputDialog("Digite o nome do usuario");
+                    String usuario = JOptionPane.showInputDialog("Digite o nome do usuário");
                     Documento novoDoc = new Documento(arquivo, usuario);
                     JOptionPane.showMessageDialog(null, fila.enfileiraDocumento(novoDoc));
                     break;
@@ -29,7 +29,7 @@ public class TesteFila {
                     JOptionPane.showMessageDialog(null, "Saindo do sistema");
                     break;
                 default:
-                    JOptionPane.showMessageDialog(null, "Opcao invalida");
+                    JOptionPane.showMessageDialog(null, "Opção inválida");
             }
         }
     }

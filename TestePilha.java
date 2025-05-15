@@ -1,28 +1,36 @@
-import java.util.Scanner;
-import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class TestePilha {
     public static void main(String[] args) {
-        // Classes utilitárias
-        Scanner scanner = new Scanner(System.in);
         Pilha pilha = new Pilha();
+        int opcoes = 1;
 
-        System.out.println("Digite o nome do arquivo");
-        String arquivo = scanner.nextLine();
-        System.out.println("Digite o nome do usuario");
-        String usuario = scanner.nextLine();
-        Long tempoAtual = System.currentTimeMillis();
-        Date dataAtual = new Date(tempoAtual);
-
-        Documento docTeste = new Documento(arquivo, usuario);
-        docTeste.setHorarioSolicitacao(dataAtual);
-        
-        System.out.println("Pilha\n"+pilha);
-        System.out.println("Empilhando:\n"+pilha.empilharDocumento(docTeste));
-        System.out.println("Pilha\n"+pilha);
-        System.out.println("Verificando:\n"+pilha.verificarDocumento(docTeste));
-        System.out.println("Imprimindo:\n"+pilha.desempilharDocumento());
-        System.out.println("Pilha\n"+pilha);
-        scanner.close();
+        while (opcoes != 0) {
+            opcoes = Integer.parseInt(JOptionPane.showInputDialog(
+                    "1 - Empilhar documento\n2 - Imprimir documento\n3 - Verificar documento\n4 - Exibir pilha\n0 - Sair do sistema"));
+            switch (opcoes) {
+                case 1:
+                    String arquivo = JOptionPane.showInputDialog("Digite o nome do arquivo");
+                    String usuario = JOptionPane.showInputDialog("Digite o nome do usuário");
+                    Documento docTeste = new Documento(arquivo, usuario);
+                    JOptionPane.showMessageDialog(null, pilha.empilharDocumento(docTeste));
+                    break;
+                case 2:
+                    JOptionPane.showMessageDialog(null, pilha.desempilharDocumento());
+                    break;
+                case 3:
+                    String nomeArquivo = JOptionPane.showInputDialog("Digite o nome do arquivo que deseja verificar");
+                    JOptionPane.showMessageDialog(null, pilha.verificarDocumento(nomeArquivo));
+                    break;
+                case 4:
+                    System.out.println("Exibindo pilha\n"+pilha);
+                    break;
+                case 0:
+                    JOptionPane.showMessageDialog(null, "Saindo do sistema");
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Opção inválida");
+            }
+        }
     }
 }
